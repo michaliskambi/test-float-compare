@@ -1,0 +1,22 @@
+Currency? 0,100000001490116 FALSE
+Variant? 0,1 TRUE
+  Variant type: Currency
+Real? 0,1 TRUE
+Single? 0,100000001490116 FALSE
+Double? 0,1 TRUE
+
+Same thing, but force 2nd comparison argument to be Single
+Currency? 0,100000001490116 TRUE
+Variant? 0,1 TRUE
+  Variant type: Currency
+Real? 0,1 FALSE
+Single? 0,100000001490116 TRUE
+Double? 0,1 FALSE
+
+Same thing, but force 2nd comparison argument to be Double
+Currency? 0,100000001490116 FALSE
+Variant? 0,1 TRUE
+  Variant type: Currency
+Real? 0,1 TRUE
+Single? 0,100000001490116 FALSE
+Double? 0,1 TRUE

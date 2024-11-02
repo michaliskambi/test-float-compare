@@ -1,0 +1,9 @@
+test_float_compare
+test_float_compare.exe
+*.o
+
+# Delphi
+*.dproj
+*.local
+*.res
+*.rsm
