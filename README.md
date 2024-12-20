@@ -104,9 +104,9 @@ There are generally 2 ways:
 
     E.g. you cannot express `0.1` exactly because the fractional part for `0.1` in base-2 is infinite (see [here](https://www.wolframalpha.com/input/?i=convert+0.1+to+base+2): `0.00011001100110011...`). And mantissa uses fixed number of bits to store this in base-2. So all of `Single`, `Double`, `Extended`, `Real` express `0.1` differently, and none of the versions is exact.
 
-    _The above 2 solutions are practical when you need fast calculations, and you can tolerate some limitations and (in case of floating-point) imprecision._
+   _The 2 solutions above (fixed-point, floating-point) are practical (and thus widely used) when you need fast calculations, and you can tolerate some limitations and (in case of floating-point) imprecision._ They are not perfect, not many things are perfect :)
 
-4. There are also solutions when you really need precision, and more flexibility than `Currency`, and can tolerate slower calculations. Most importantly, There are _arbitrary-precision arithmetic libraries_. See e.g.:
+3. There are also solutions when you really need absolute precision, and more flexibility than `Currency`, and can tolerate slower calculations. Most importantlyt There are _arbitrary-precision arithmetic libraries_. See e.g.:
 
     - not Pascal-specific:
         - https://gmplib.org/
@@ -115,10 +115,12 @@ There are generally 2 ways:
     - Pascal-specific:
         - http://rvelthuis.de/programs/bigintegers.html
         - https://github.com/Xor-el/DelphiBigNumberXLib
+     
+    These solutions have really significant speed (and memory) overhead. They are _slower_, in simple words. Too slow to use e.g. in [game engines](https://castle-engine.io/) for regular computations or storage of 3D data.
 
 ### Any summary "what to do" for developers?
 
-All of this, in short, is a reason to use `SameValue` from Math, not `=`.
+All of this, in short, is a reason to use `SameValue` function from `Math` to compare non-integer types. And do not use `=`.
 
 Don't assume strict equality (`=`) of floating-point numbers that went through some calculations and/or conversions.
 
@@ -139,11 +141,11 @@ The exceptional moments when `=` for floating-point numbers is reliable are impl
     end;
     ```
 
-- The example with `MyVar = Single(0.1)` from above is also reliable, and actually equivalent to above.
+- The example with `if MyVar = Single(0.1) then...` given above is also reliable, and actually equivalent to above.
 
 - Using `Currency` is also precise (for calculations and comparisons using `=`) but only if you stay within the range of `Currency` (i.e. never go below 1/10000).
 
-    The `Currency` is not a floating-point type, it's fixed-point. We discussed it above as it is another way to express non-integer numbers in computers, so it's worth noting how it compares.
+    To be clear about the terminology: the `Currency` is not a floating-point type, it's fixed-point. We discussed it above as it is another way to express non-integer numbers in computers, so it's worth noting how it compares.
 
 ## Credits
 
