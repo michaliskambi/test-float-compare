@@ -72,11 +72,11 @@ As you can see, result is both compiler and system dependent. And the Pascal typ
 
 - Variant may also be converted to different things. As the test in this repo shows, doing `VarVariant := 0.1`...
 
-    - with Delphi it results in `Variant` value that is internally stored using the ` Currency` type.
+    - with Delphi it results in `Variant` value that is internally stored using the `Currency` type.
 
     - with FPC, the `Variant` value is stored using the `Double` type.
 
-    Neither compiler is _"wrong"_ here, compilers have a freedom in what type to choose for `VarVariant := 0.1`, and the logic of it may depend on any number of factors (what is performant? on this platform? what can hold the resulting value? (e.g. `Currency` cannot hold too small values without just turning them into zero, but it's OK for `0.1`)).
+    Neither compiler is _"wrong"_ here, compilers have a freedom in what type to choose for `VarVariant := 0.1`, and the logic of it may depend on any number of factors (what type is fast for typical operations, on this platform? what can hold the resulting value? (e.g. `Currency` cannot hold too small values without just turning them into zero, but it's OK for `0.1`)).
 
 ### Floating-point numbers are not precise and 0.1 is not easy
 
@@ -90,9 +90,9 @@ As you can see, result is both compiler and system dependent. And the Pascal typ
 
 There are generally 2 ways:
 
-1. Fixed-point types, like `Currency`, allocate fixed precision (fixed amount of digits in base-2) to the fractional part.
+1. Fixed-point types, like `Currency`, allocate fixed precision (fixed amount of digits, in base-2 or base-10) to the fractional part.
 
-    `Currency` is just "value times `10000`, stored as an integer".
+    `Currency` is just "value times `10000`, stored as an integer". If you want to use fancy words, it is equivalent to say _"`Currency` uses 4 digits (from base-10 perspective) to store the fractional part"_.
 
     This is great when you want to express e.g. `0.01` precisely, and generally do precise calculations with money, hence the name `Currency`.
 
