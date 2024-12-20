@@ -20,7 +20,7 @@ As you can see, I did not clarify the type of `MyVar` in the question above. Is 
 
 As the test in [test_float_compare.dpr (Pascal source code)](test_float_compare.dpr) shows, and as I explain below in this file, all above (`MyVar` type, compiler, platform) are critical to determine the answer.
 
-If the explanation below is too complicated for you, and you want a quick (simplifying) summary, here goes: **Opeations on floating-point numbers are not precise, and this means that the comparison using `=` is not reliable for them. Instad of `=`, almost always use `SameValue` from `Math` unit to compare them, like `if SameValue(MyVar, 0.1) then ...`.**
+If the explanation below is too complicated for you, and you want a quick (simplifying) summary, here goes: **Opeations on floating-point numbers are not precise, and this means that the comparison using `=` is not reliable for them. Instead of `=`, almost always use `SameValue` from `Math` unit to compare them, like `if SameValue(MyVar, 0.1) then ...`.**
 
 ## Results
 
