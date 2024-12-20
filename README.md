@@ -102,11 +102,11 @@ There are generally 2 ways:
 
     [Wikipedia page about floating-point arithmetic](https://en.wikipedia.org/wiki/Floating-point_arithmetic) explains the details. Note that Wikipedia page shows early an example expressig the number as _"something * 10^exponent"_, but in computers everything is base-2, so `Single` and `Double` are actually expressed as _"something * 2^exponent"_. As a result, very small numbers can be expressed, and very large numbers too -- the range is much much larger than `Currency`, but also the precision is not "uniform".
 
-    E.g. you cannot express `0.1` exactly (because the fractional part for `0.1` in base-2 is infinite, see https://www.wolframalpha.com/input/?i=convert+0.1+to+base+2 . So both `Single` and `Double` express `0.1` differently, and none of the versions is exact.
+    E.g. you cannot express `0.1` exactly because the fractional part for `0.1` in base-2 is infinite (see [here](https://www.wolframalpha.com/input/?i=convert+0.1+to+base+2): `0.00011001100110011...`). And mantissa uses fixed number of bits to store this in base-2. So all of `Single`, `Double`, `Extended`, `Real` express `0.1` differently, and none of the versions is exact.
 
     _The above 2 solutions are practical when you need fast calculations, and you can tolerate some limitations and (in case of floating-point) imprecision._
 
-3. There are also solutions when you really need precision, and more flexibility than `Currency`, and can tolerate slower calculations. Most importantly, There are _arbitrary-precision arithmetic libraries_. See e.g.:
+4. There are also solutions when you really need precision, and more flexibility than `Currency`, and can tolerate slower calculations. Most importantly, There are _arbitrary-precision arithmetic libraries_. See e.g.:
 
     - not Pascal-specific:
         - https://gmplib.org/
